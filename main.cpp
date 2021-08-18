@@ -109,7 +109,7 @@ void TestDbAdd() {
         db.Print(out);
         AssertEqual("2017-01-01 new year\n2017-01-01 xmas\n", out.str(), "uniq adding");
     }
-}
+ }
 
 void TestDbFind() {
     {

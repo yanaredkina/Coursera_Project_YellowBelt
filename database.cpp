@@ -116,7 +116,7 @@ string Database::Last(const Date& date) const {
     } else {
         Date lastDate = prev(itS)->first;
         auto itV = EventsMapWithVector.at(lastDate).end();
-        while (EventsMapWithSet.at(lastDate).count(*prev(itV)) < 0) {
+        while (EventsMapWithSet.at(lastDate).count(*prev(itV)) == 0) {
             itV--;
         }
         stringstream stream;
@@ -148,7 +148,7 @@ ostream& Database::Print(ostream& out) const {
 void Database::DelEmptyValuesFromMap(){
     for (auto it = EventsMapWithSet.begin(); it != EventsMapWithSet.end(); ) {
         if(it->second.empty())
-            it = EventsMapWithSet   .erase(it);
+            it = EventsMapWithSet.erase(it);
         else
             ++it;
     }
