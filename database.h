@@ -5,12 +5,14 @@
 #include <vector>
 #include <string>
 #include <functional>
+#include <set>
 
 using namespace std;
 
 class Database {
 private:
-    map<Date,vector<string>> Events;
+    map<Date,vector<string>> EventsMapWithVector;
+    map<Date,set<string>> EventsMapWithSet;
 public:
     void Add(const Date& date, const string& event);
     int RemoveIf(function<bool(const Date& date, const string& event)>predicate);
