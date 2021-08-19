@@ -34,14 +34,16 @@ void Database::Add(const Date& date, const string& event) {
 
 int Database::RemoveIf(function<bool(const Date& date, const string& event)> predicate) {
     int count = 0;
-    for (auto& item: EventsMapWithVector) {
-        Date date = item.first;
-        auto itV = stable_partition(item.second.begin(), item.second.end(), [date, predicate](string event) 
-            {return predicate(date, event);});
-        item.second.erase(itV, item.second.end());
+    for (auto itM = EventsMapWithVector.begin(); itM != EventsMapWithVector.end();) {
+        Date date = itM->first;
+        auto iterForErase = stable_partition(itM->second.begin(), itM->second.end(), [date, predicate](string event) 
+            {return !predicate(date, event);});
+        itM->second.erase(iterForErase, itM->second.end());
         
-        if (item.second.empty()) {
-            EventsMapWithVector.erase(date);
+        if (itM->second.empty()) {
+            itM = EventsMapWithVector.erase(itM);
+        } else {
+            ++itM;
         }
         
         for (auto itS = EventsMapWithSet.at(date).begin(); itS != EventsMapWithSet.at(date).end();) {
@@ -52,7 +54,7 @@ int Database::RemoveIf(function<bool(const Date& date, const string& event)> pre
                 ++itS;
             }
         }
-        
+
         if (EventsMapWithSet.at(date).empty()) {
             EventsMapWithSet.erase(date);
         }
