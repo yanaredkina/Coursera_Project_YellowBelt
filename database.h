@@ -19,5 +19,5 @@ public:
     vector<string> FindIf(function<bool(const Date& date, const string& event)>predicate) const;
     string Last(const Date& date) const;
     ostream& Print(ostream& out) const;
-    void DelEmptyValuesFromMap();
+//    void DelEmptyValuesFromMap();
 };
