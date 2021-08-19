@@ -4,14 +4,14 @@
 #include <iostream>
 #include <algorithm>
 #include <sstream>
+#include <utility>
 
 using namespace std;
 
 
-
 void Database::Add(const Date& date, const string& event) {
-    if (EventsMapWithSet.count(date) == 0 || EventsMapWithSet.at(date).count(event) == 0) {
-        EventsMapWithSet[date].insert(event);
+    auto flag = EventsMapWithSet[date].insert(event);
+    if (flag.second) {
         EventsMapWithVector[date].push_back(event);
     }
 }
@@ -31,17 +31,6 @@ int Database::RemoveIf(function<bool(const Date& date, const string& event)> pre
     DelEmptyValuesFromMap();
     return count;
 }
-
-
-// int Database::RemoveIf(function<bool(const Date& date, const string& event)> predicate) {
-//     int count = 0;
-//     for (auto& item: EventsMapWithVector) {
-//         auto it = stable_partition(item.second.begin(), item.second.end(), predicate());
-//         item.second.erase(it, item.second.end());
-//     }
-//     DelEmptyValuesFromMap();
-//     return count;
-// }
 
 
 vector<string> Database::FindIf(function<bool(const Date& date, const string& event)>predicate) const {
