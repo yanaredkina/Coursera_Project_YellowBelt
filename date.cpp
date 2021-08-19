@@ -111,28 +111,6 @@ bool operator!=(const Date& lhs, const Date& rhs) {
     }
 }
 
-// bool dateComparator(const Date& lhs, const Date& rhs, string op) {
-//     if (op == "<") {
-//         return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} <
-//             vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
-//     } else if (op == "<=") {
-//         return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} <=
-//             vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
-//     } else if (op == ">") {
-//         return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} >
-//             vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
-//     } else if (op == ">=") {
-//         return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} >=
-//             vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
-//     } else if (op == "==") {
-//         return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} ==
-//             vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
-//     } else {
-//         return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} !=
-//             vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
-//     }
-// }
-
 Date ParseDate(istream& date_stream) {
     while (!isdigit(date_stream.peek())) {
         date_stream.ignore(1);

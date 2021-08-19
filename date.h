@@ -27,5 +27,4 @@ bool operator>=(const Date& lhs, const Date& rhs);
 bool operator==(const Date& lhs, const Date& rhs);
 bool operator!=(const Date& lhs, const Date& rhs);
 
-//bool dateComparator(const Date& lhs, const Date& rhs, string op);
 Date ParseDate(istream& date_stream);
